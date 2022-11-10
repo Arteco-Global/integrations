@@ -11,31 +11,21 @@ var server = http.createServer(function (req, res) {
     var form = new multiparty.Form();
     form.parse(req, function (err, fields, files) {
       // fields fields fields
-      const vcaBodyData = fields.vca[0];
+      let vcaBodyData = fields.vca[0];
       const imageBased64 = getImageAsbase64(files);
 
       if (imageBased64 != undefined) {
         // got the image
 
-        const objToSend = {
-          "lane": "manageEvent",
-          "data": {
-            "ctx": "liveEvent",
-            "chId": 4,
-            "param": "{{name}} {{type.string}} ",
-            "cat": 200,
-            "image": imageBased64
-          }
-        }
+        vcaBodyData.data.image = imageBased64;
 
-
-        const res = sendToArtecoDearFriend('https://mdalprato.lan.omniaweb.cloud:443/api/v2/event', objToSend)
+        const res = sendToArtecoDearFriend('https://mdalprato.lan.omniaweb.cloud:443/api/v2/event', vcaBodyData)
 
         console.log("Object sent ... from now on you are fu**** up !")
 
 
       } else {
-        console.log("No image provided, live event ");
+        console.log("No image provided, check your VCA configuration in order to enable snapshots ");
       }
 
     });
@@ -46,13 +36,20 @@ var server = http.createServer(function (req, res) {
 function getImageAsbase64(files) {
 
   let base64Image = undefined;
-  const currentImg = files.vca[1];
+  if (Array.isArray(files.vca) && files.vca.length > 0) {
 
-  if (currentImg != undefined) {
-    const tempPath = currentImg.path;
-    base64Image = getBase64(tempPath);
+    files.vca.forEach(element => {
+      
+      if(element.originalFilename.includes("current")){
+        if (element != undefined) {
+          const tempPath = element.path;
+          base64Image = getBase64(tempPath);
+        }
+      }
+
+    });
+ 
   }
-
   return base64Image
 }
 
@@ -77,30 +74,30 @@ async function sendToArtecoDearFriend(url, data) {
     timeout: 1000, // in ms
   }
 
-  
-    const req = https.request(url, options, (res) => {
-      if (res.statusCode < 200 || res.statusCode > 299) {
+
+  const req = https.request(url, options, (res) => {
+    if (res.statusCode < 200 || res.statusCode > 299) {
       //  return reject(new Error(`HTTP status code ${res.statusCode}`))
-      }
+    }
 
-      const body = []
-      res.on('data', (chunk) => body.push(chunk))
-      res.on('end', () => {
-        const resString = Buffer.concat(body).toString()
-        //resolve(resString)
-      })
+    const body = []
+    res.on('data', (chunk) => body.push(chunk))
+    res.on('end', () => {
+      const resString = Buffer.concat(body).toString()
+      //resolve(resString)
     })
+  })
 
-    req.on('error', (err) => {
-      //reject(err)
-    })
+  req.on('error', (err) => {
+    //reject(err)
+  })
 
-    req.on('timeout', () => {
-      req.destroy()
-     // reject(new Error('Request time out'))
-    })
+  req.on('timeout', () => {
+    req.destroy()
+    // reject(new Error('Request time out'))
+  })
 
-    req.write(dataString)
-    req.end()
-  
+  req.write(dataString)
+  req.end()
+
 }
