@@ -3,35 +3,58 @@ var fs = require('fs');
 var multiparty = require('multiparty');
 var https = require('https');
 
+const artecoServerAPIurl = 'https://mdalprato.lan.omniaweb.cloud:443/api/v2/event';
+const serverPort = 5000;
+
+
 var server = http.createServer(function (req, res) {
 
-  console.log("Server starting ..")
+  console.log("Server listening ...");
 
   if (req.method === "POST") {
+    // multipart must be post !
+
     var form = new multiparty.Form();
     form.parse(req, function (err, fields, files) {
-      // fields fields fields
-      let vcaBodyData = fields.vca[0];
+
+      if (fields == undefined) {
+        console.log("Invalid fields");
+        return;
+      }
+
+      if (files == undefined) {
+        console.log("Invalid files");
+        return;
+      }
+
+      if (Array.isArray(fields.vca) && fields.vca.length == 0) {
+        console.log("fields.vca is not an array");
+        return;
+      }
+
+      // obtaining the base64 image
       const imageBased64 = getImageAsbase64(files);
+      // Body obtained, adding some image to it
+      const vcaBody = fields.vca[0];
+      let bodyObject = JSON.parse(vcaBody);
 
       if (imageBased64 != undefined) {
-        // got the image
-
-        vcaBodyData.data.image = imageBased64;
-
-        const res = sendToArtecoDearFriend('https://mdalprato.lan.omniaweb.cloud:443/api/v2/event', vcaBodyData)
-
-        console.log("Object sent ... from now on you are fu**** up !")
-
-
-      } else {
-        console.log("No image provided, check your VCA configuration in order to enable snapshots ");
+        bodyObject.data.image = imageBased64;
+        console.log("Image provided --");
       }
+
+      sendPayloadToArtecoServer(artecoServerAPIurl, bodyObject)
+      console.log("VCA payload sent to server");
 
     });
   }
 
-}).listen(5000);
+}).listen(serverPort);
+
+
+
+
+
 
 function getImageAsbase64(files) {
 
@@ -39,8 +62,8 @@ function getImageAsbase64(files) {
   if (Array.isArray(files.vca) && files.vca.length > 0) {
 
     files.vca.forEach(element => {
-      
-      if(element.originalFilename.includes("current")){
+
+      if (element.originalFilename.includes("current")) {
         if (element != undefined) {
           const tempPath = element.path;
           base64Image = getBase64(tempPath);
@@ -48,7 +71,7 @@ function getImageAsbase64(files) {
       }
 
     });
- 
+
   }
   return base64Image
 }
@@ -62,8 +85,10 @@ function getBase64(file) {
 
 
 
-async function sendToArtecoDearFriend(url, data) {
-  const dataString = JSON.stringify(data)
+async function sendPayloadToArtecoServer(url, data) {
+  // contact arteco server in order to post the event
+
+  const dataString = JSON.stringify(data);
 
   const options = {
     method: 'POST',
@@ -77,24 +102,24 @@ async function sendToArtecoDearFriend(url, data) {
 
   const req = https.request(url, options, (res) => {
     if (res.statusCode < 200 || res.statusCode > 299) {
-      //  return reject(new Error(`HTTP status code ${res.statusCode}`))
+      console.log(`HTTP status code ${res.statusCode}`);
     }
 
     const body = []
     res.on('data', (chunk) => body.push(chunk))
     res.on('end', () => {
       const resString = Buffer.concat(body).toString()
-      //resolve(resString)
+      console.log(resString);
     })
   })
 
   req.on('error', (err) => {
-    //reject(err)
+    console.log(err);
   })
 
   req.on('timeout', () => {
     req.destroy()
-    // reject(new Error('Request time out'))
+    console.log('Request time out');
   })
 
   req.write(dataString)
