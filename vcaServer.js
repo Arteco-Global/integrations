@@ -6,29 +6,42 @@ var https = require('https');
 const artecoServerAPIurl = 'https://mdalprato.lan.omniaweb.cloud:443/api/v2/event';
 const serverPort = 5000;
 
+/*
+Payload example:
+{
+  "lane": "manageEvent",
+  "data": {
+    "ctx": "liveEvent",
+    "chId": 4,
+    "param": "VCA; Name: {{name}}; Class: {{#Object}}{{#DLClassification}}{{class}}{{/DLClassification}}{{/Object}}",
+    "cat": 200
+  }
+}
+*/
+// creation of the web server
 
 var server = http.createServer(function (req, res) {
 
-  console.log("Server listening ...");
+  console.log("Server listening on port " + serverPort);
 
   if (req.method === "POST") {
-    // multipart must be post !
+    // data must be sent as POST data
 
     var form = new multiparty.Form();
     form.parse(req, function (err, fields, files) {
 
       if (fields == undefined) {
-        console.log("Invalid fields");
+        console.log("Invalid fields"); // out of the game
         return;
       }
 
       if (files == undefined) {
-        console.log("Invalid files");
+        console.log("Invalid files"); // out of the game
         return;
       }
 
       if (Array.isArray(fields.vca) && fields.vca.length == 0) {
-        console.log("fields.vca is not an array");
+        console.log("fields.vca is not an array"); // out of the game
         return;
       }
 
@@ -40,7 +53,7 @@ var server = http.createServer(function (req, res) {
 
       if (imageBased64 != undefined) {
         bodyObject.data.image = imageBased64;
-        console.log("Image provided --");
+        console.log("Image provided.");
       }
 
       sendPayloadToArtecoServer(artecoServerAPIurl, bodyObject)
@@ -50,10 +63,6 @@ var server = http.createServer(function (req, res) {
   }
 
 }).listen(serverPort);
-
-
-
-
 
 
 function getImageAsbase64(files) {
