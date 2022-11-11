@@ -31,19 +31,14 @@ function sendEvent() {
   }
 
   sendPayloadToArtecoServer(artecoServerAPIurl, bodyObject)
-  console.log("VCA payload sent to server");
-
+  console.log("Payload sent to server");
 
 }
-
 
 function getImageAsbase64(img) {
   let base64Image = undefined;
   if (img != undefined) {
-
     const logo = path.resolve(__dirname, img);
-
-
     base64Image = getBase64(logo);
   }
   return base64Image
@@ -57,9 +52,7 @@ function getBase64(file) {
 
 async function sendPayloadToArtecoServer(url, data) {
   // contact arteco server in order to post the event
-
   const dataString = JSON.stringify(data);
-
   const options = {
     method: 'POST',
     headers: {
