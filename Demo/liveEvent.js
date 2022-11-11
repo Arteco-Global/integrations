@@ -5,6 +5,7 @@ const path = require('path');
 
 const artecoServerAPIurl = 'https://mdalprato.lan.omniaweb.cloud:443/api/v2/event';
 const image = './steve-jobs-640x320.jpg';
+
 const cameraId = 4;
 const eventText = "Arteco event test";
 
