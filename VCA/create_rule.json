@@ -2,7 +2,7 @@
   "uri": "https://mdalprato.lan.omniaweb.cloud/api/v2/event",
   "port": 443,
   "headers": "Content-Type:multipart/form-data",
-"body": "{  \"lane\": \"manageEvent\", \"data\": { \"ctx\": \"liveEvent\", \"chId\": 4,  \"param\": \"sddd\",  \"cat\": 200  } } ",
+"body": "{\"lane\": \"manageEvent\", \"data\": { \"ctx\": \"liveEvent\", \"chId\": 4,  \"param\": \"name: {{name}}; Class: {{#Object}}{{#DLClassification}}{{class}}{{/DLClassification}}{{/Object}}\",  \"cat\": 200  } }",
   "method": "POST",
   "authentication": false,
   "username": "",
