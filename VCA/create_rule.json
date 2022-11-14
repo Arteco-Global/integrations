@@ -18,5 +18,5 @@
   "ssl_method": "tlsv13",
   "name": "arteco_cam_0_1",
   "always_trigger": true,
-  "observables": [347]
+  "observables": [739]
 }
