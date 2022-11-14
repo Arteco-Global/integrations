@@ -1,13 +1,13 @@
 {
-  "uri": "",
-  "port": 0,
+  "uri": "https://mdalprato.lan.omniaweb.cloud/api/v2/event",
+  "port": 443,
   "headers": "Content-Type:multipart/form-data",
 "body": "{  \"lane\": \"manageEvent\", \"data\": { \"ctx\": \"liveEvent\", \"chId\": 4,  \"param\": \"sddd\",  \"cat\": 200  } } ",
   "method": "GET",
   "authentication": false,
   "username": "",
   "password": "",
-  "send_snapshot": false,
+  "send_snapshot": true,
   "jpeg_quality": "average",
   "pre_snapshots": 1,
   "post_snapshots": 1,
@@ -17,6 +17,6 @@
   "verify_host_certificate": false,
   "ssl_method": "tls",
   "name": "arteco_cam_0_1",
-  "always_trigger": false,
+  "always_trigger": true,
   "observables": []
 }
