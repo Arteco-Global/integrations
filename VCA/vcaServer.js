@@ -5,7 +5,7 @@ var https = require('https');
 
 const artecoServerAPIurl = 'https://mdalprato.lan.omniaweb.cloud:443/api/v2/event';
 const serverPort = 5000;
-
+{}
 /*
 Payload example:
 {
@@ -13,7 +13,7 @@ Payload example:
   "data": {
     "ctx": "liveEvent",
     "chId": 4,
-    "param": "VCA; Name: {{name}}; Class: {{#Object}}{{#DLClassification}}{{class}}{{/DLClassification}}{{/Object}}",
+    "param": "type: vca; name: {{name}}; classiicatio: {{#Object}}{{#DLClassification}}{{class}}{{/DLClassification}}{{/Object}}",
     "cat": 200
   }
 }

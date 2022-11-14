@@ -1,0 +1,22 @@
+{
+  "uri": "",
+  "port": 0,
+  "headers": "Content-Type:multipart/form-data",
+"body": "{  \"lane\": \"manageEvent\", \"data\": { \"ctx\": \"liveEvent\", \"chId\": 4,  \"param\": \"sddd\",  \"cat\": 200  } } ",
+  "method": "GET",
+  "authentication": false,
+  "username": "",
+  "password": "",
+  "send_snapshot": false,
+  "jpeg_quality": "average",
+  "pre_snapshots": 1,
+  "post_snapshots": 1,
+  "interval": 500,
+  "typename": "vca.action.Http",
+  "multipart_name": "vca",
+  "verify_host_certificate": false,
+  "ssl_method": "tls",
+  "name": "arteco_cam_0_1",
+  "always_trigger": false,
+  "observables": []
+}
