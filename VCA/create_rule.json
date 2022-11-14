@@ -15,7 +15,7 @@
   "typename": "vca.action.Http",
   "multipart_name": "vca",
   "verify_host_certificate": false,
-  "ssl_method": "tls",
+  "ssl_method": "tlsv13",
   "name": "arteco_cam_0_1",
   "always_trigger": true,
   "observables": []
