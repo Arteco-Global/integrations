@@ -20,3 +20,6 @@
   "always_trigger": true,
   "observables": [739]
 }
+
+{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 4, 
+ "param": "{display:{{name}},data:{ brand:vca,name:{{name}}}},id:{{id}},type:{{type.string}},counter:{{#Counter}}id:{{id}},name:{{name}},count:{{value}}{{/Counter}},speed:{{#Object}}{{#Speed}}{{value}}{{/Speed}}{{/Object}},DLClassification:{{#Object}}{{#DLClassification}}{{class}}{{/DLClassification}}{{/Object}},colourSignature:{{#Object}}{{#Classification}}{{value}}{{/Classification}}{{/Object}}{{#Object}}{{#ColourSignature}}{{#colours}}Colour:{{colour_name}},Proportion:{{proportion}}{{/colours}}{{/ColourSignature}}{{/Object}}","cat": 200}}

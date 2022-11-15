@@ -1,0 +1,3 @@
+{"lane": "manageEvent", 
+"data": { "ctx": "liveEvent", "chId": 4,  
+"param": "name: {{name}}; Class: {{#Object}}{{#DLClassification}}{{class}}{{/DLClassification}}{{/Object}}; Color: {{#Object}}{{#ColourSignature}}{{#colours}}Colour: {{colour_name}}, Proportion: {{proportion}}{{/colours}}{{/ColourSignature}}{{/Object}}",  "cat": 200  }}
