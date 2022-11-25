@@ -1,9 +1,0 @@
-{
-  "lane": "manageEvent",
-  "data": {
-    "ctx": "liveEvent",
-    "chId": 4,
-    "param": "{{name}} {{type.string}} ",
-    "cat": 200
-  }
-}
