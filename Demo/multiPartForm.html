@@ -1,0 +1,54 @@
+<html>
+
+<body>
+  <h1>Event sender</h1>
+
+  <form id="myForm">
+    <label for="paramText">Event text:</label>
+    <input id="paramText" name="arteco" value='{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "Courma cortina", "brand":"VCA", "data":"---data---",  "cat": 200  }}' />
+    <input type="file" name="arteco" id="fileToUpload">
+    <input type="submit" value="Send Me!" />
+  </form>
+</body>
+
+
+
+</html>
+
+<script>
+
+  window.addEventListener("load", () => {
+    function sendData() {
+      const XHR = new XMLHttpRequest();
+
+      // Bind the FormData object and the form element
+      const FD = new FormData(form);
+
+      // Define what happens on successful data submission
+      XHR.addEventListener("load", (event) => {
+        alert(event.target.responseText);
+      });
+
+      // Define what happens in case of error
+      XHR.addEventListener("error", (event) => {
+        alert('Oops! Something went wrong.');
+      });
+
+      // Set up our request
+      XHR.open("POST", "https://mdalprato.lan.omniaweb.cloud:443/api/v2/event");
+
+      // The data sent is what the user provided in the form
+      XHR.send(FD);
+    }
+
+    // Get the form element
+    const form = document.getElementById("myForm");
+
+    // Add 'submit' event handler
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      sendData();
+    });
+  });
+</script>
