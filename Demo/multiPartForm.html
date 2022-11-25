@@ -6,60 +6,37 @@
 </head>
 
 <body>
-
   <h1>Arteco multipart form Demo</h1>
-
   <div class="container">
-    <form id="myForm" action="/action_page.php">
+    <form id="artecoForm" action="/action_page.php">
       <label for="artecoServerIP">Server IP</label>
-      <input type="text" id="artecoServerIP" name="arteco_server_ip" placeholder="https://mdalprato.lan.omniaweb.cloud:443">
-  
+      <input type="text" id="artecoServerIP" name="arteco_server_ip"
+        placeholder="https://mdalprato.lan.omniaweb.cloud:443" value="https://mdalprato.lan.omniaweb.cloud:443">
       <label for="artecoServerChannel">Channel Id</label>
       <input type="text" id="artecoServerChannel" name="arteco_server_channel" placeholder="0">
-  
-
       <label for="artecoServerParam">Subject</label>
-      <textarea id="artecoServerParam" name="artecoServerParam" placeholder="Write something ..." style="height:200px"></textarea>
-  
-      <label for="artecoServerParam">Event image</label>
-      <input type="file" name="arteco" id="fileToUpload">
-
-
+      <textarea id="artecoServerParam" name="arteco_server_param" placeholder="Write something ..."
+        style="height:200px"></textarea>
+      <label for="artecoServerImage">Event image</label>
+      <input type="file" name="arteco_server_image" id="artecoServerImage">
       <input type="submit" value="Submit">
     </form>
   </div>
-
-  <!-- <div class="container">
-
-    
-  <form id="myForm">
-    <label for="paramText">Event text:</label>
-    <input id="paramText" name="arteco"
-      value='{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "Courma cortina", "brand":"VCA", "data":"---data---",  "cat": 200  }}' />
-
-    <label for="channelId">ChannelId:</label>
-    <input id="channelId" name="channelId" value="0" />
-
-    <input type="file" name="arteco" id="fileToUpload">
-    <input type="submit" value="Send Me!" />
-  </form>
-  </div> -->
-
 </body>
 
 </html>
-<html>
-
-
-
-
-
-</html>
-
 <script>
 
   window.addEventListener("load", () => {
     function sendData() {
+
+      const artecoServerIP = document.getElementById("artecoServerIP").value;
+      const artecoServerChannel = document.getElementById("artecoServerChannel").value;
+      const artecoServerParam = document.getElementById("artecoServerParam").value;
+      const artecoServerImage = document.getElementById("artecoServerImage").value;
+
+      const url = artecoServerIP + "/api/v2/event";
+
       const XHR = new XMLHttpRequest();
 
       // Bind the FormData object and the form element
@@ -76,14 +53,14 @@
       });
 
       // Set up our request
-      XHR.open("POST", "https://mdalprato.lan.omniaweb.cloud:443/api/v2/event");
+      XHR.open("POST", url);
 
       // The data sent is what the user provided in the form
       XHR.send(FD);
     }
 
     // Get the form element
-    const form = document.getElementById("myForm");
+    const form = document.getElementById("artecoForm");
 
     // Add 'submit' event handler
     form.addEventListener("submit", (event) => {
