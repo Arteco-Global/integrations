@@ -5,7 +5,7 @@ var https = require('https');
 const GIFEncoder = require('gifencoder');
 const { createCanvas, loadImage } = require('canvas');
 
-const artecoServerAPIurl = 'https://mdalprato.lan.omniaweb.cloud:443/api/v2/event';
+const artecoServerAPIurl = 'https://artecoServerIp.lan.omniaweb.cloud:443/api/v2/event';
 const serverPort = 5000;
 
 /*

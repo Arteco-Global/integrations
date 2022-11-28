@@ -6,24 +6,33 @@
 </head>
 
 <body>
-  <h1>Send event using multipart form</h1>
+  <h1>Login</h1>
   <div class="container">
-    <form id="artecoForm" >
+    <form id="artecoForm">
+
       <label for="artecoServerIP">Server IP</label>
       <input type="text" id="artecoServerIP" name="arteco_server_ip"
         placeholder="https://artecoServerIp.lan.omniaweb.cloud:443" value="https://artecoServerIp.lan.omniaweb.cloud:443">
 
-      <label for="artecoServerParam">JSON</label>
-      <textarea id="artecoServerParam" name="arteco" placeholder="Write something ..."
-        style="height:200px">{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "Steve Jobs", "brand":"VCA", "data":"---data--",  "cat": 200  }}</textarea>
-      <label for="artecoServerImage">Event image</label>
-      <input type="file" name="arteco_server_image" id="artecoServerImage">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="arteco_server_ip" placeholder="username" value="">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="arteco_server_ip" placeholder="password" value="">
+
       <input type="submit" value="Submit">
     </form>
   </div>
+
+  <div class="container">
+      <label for="loginResponse">Login response</label>
+      <textarea id="loginResponse" name="arteco" placeholder="Login response" style="height:500px"></textarea>
+  </div>
+
   <footer>
     <p>© 2022 ARTECO S.u.r.l. All rights reserved P.IVA 00594980393 · privacy policy - cookie policy</p>
   </footer>
+
 </body>
 
 </html>
@@ -33,17 +42,19 @@
     function sendData() {
 
       const artecoServerIP = document.getElementById("artecoServerIP").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-      const url = artecoServerIP + "/api/v2/event";
+      const url = artecoServerIP + "/api/v2/login";
 
       const XHR = new XMLHttpRequest();
 
-      // Bind the FormData object and the form element
-      const FD = new FormData(form);
-
       // Define what happens on successful data submission
       XHR.addEventListener("load", (event) => {
-        alert(event.target.responseText);
+        //);
+        document.getElementById('loginResponse').value = event.target.responseText;
+
+
       });
 
       // Define what happens in case of error
@@ -54,8 +65,15 @@
       // Set up our request
       XHR.open("POST", url);
 
+      //Send the proper header information along with the request
+      XHR.setRequestHeader("Content-Type", "application/json");
+
+      const data = {
+        "username": username,
+        "password": password
+      }
       // The data sent is what the user provided in the form
-      XHR.send(FD);
+      XHR.send(JSON.stringify(data));
     }
 
     // Get the form element
