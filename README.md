@@ -23,7 +23,7 @@ This repository is the key repo for all arteco past, current and future integrat
 
 ## Contributing
 
-1. Fork it (<https://arteco-global.github.io/integrations/>)
+1. Fork it (<https://github.com/Arteco-Global/integrations/>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)

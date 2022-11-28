@@ -75,6 +75,12 @@ input[type="submit"]:hover {
   margin: 10px;
 }
 
+a {
+  color: #900000;
+  background-color: transparent;
+  text-decoration: none;
+}
+
 a:link {
   color: #900000;
   background-color: transparent;
