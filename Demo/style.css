@@ -22,7 +22,7 @@ textarea {
 }
 
 input[type="submit"] {
-  background-color: #aa040f;
+  background-color: #900000;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -73,4 +73,28 @@ input[type="submit"]:hover {
 }
 .helper {
   margin: 10px;
+}
+
+a:link {
+  color: #900000;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #900000;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #900000;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #900000;
+  background-color: transparent;
+  text-decoration: underline;
 }
