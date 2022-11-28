@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <h1>Send event without multipart form</h1>
+  <div class="container">
+    <form id="artecoForm" action="/action_page.php">
+      <label for="artecoServerIP">Server IP</label>
+      <input type="text" id="artecoServerIP" name="arteco_server_ip"
+        placeholder="https://mdalprato.lan.omniaweb.cloud:443" value="https://mdalprato.lan.omniaweb.cloud:443">
+
+      <label for="artecoServerParam">JSON</label>
+      <textarea id="artecoServerParam" name="arteco" placeholder="Write something ..."
+        style="height:200px">{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "Steve Jobs", "brand":"VCA", "data":"---data--", "image": "data:image/jpeg;base64,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",
+ "cat": 200  }}
+      </textarea>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  <div class="helper">
+    <a href="https://www.base64-image.de/" target="_blank">Convert image to base64</a>
+  </div>
+
+</body>
+
+</html>
+<script>
+
+  window.addEventListener("load", () => {
+    function sendData() {
+
+      const artecoServerIP = document.getElementById("artecoServerIP").value;
+      const artecoServerParam = document.getElementById("artecoServerParam").value;
+      
+
+      const url = artecoServerIP + "/api/v2/event";
+
+      const XHR = new XMLHttpRequest();
+
+          // Define what happens on successful data submission
+      XHR.addEventListener("load", (event) => {
+        alert(event.target.responseText);
+      });
+
+      // Define what happens in case of error
+      XHR.addEventListener("error", (event) => {
+        alert('Oops! Something went wrong.');
+      });
+
+      // Set up our request
+      XHR.open("POST", url);
+
+      //Send the proper header information along with the request
+      XHR.setRequestHeader("Content-Type", "application/json");
+
+      // The data sent is what the user provided in the form
+      XHR.send(artecoServerParam);
+    }
+
+    // Get the form element
+    const form = document.getElementById("artecoForm");
+
+    // Add 'submit' event handler
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      sendData();
+    });
+  });
+</script>
