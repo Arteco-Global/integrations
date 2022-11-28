@@ -6,6 +6,6 @@
 
 This repository is the key repo for all arteco past, current and future integration.
 ## Navigate the project
-* [Demo](/Demo/liveEvent.js) 
+* [Demo](/Demo/index.html) 
 * [Security Connector](/SecurityConnector/secuirtyEvent.js) 
 * [VCA](/VCA/vcaServer.js) 
