@@ -12,11 +12,11 @@
       <label for="artecoServerIP">Server IP</label>
       <input type="text" id="artecoServerIP" name="arteco_server_ip"
         placeholder="https://mdalprato.lan.omniaweb.cloud:443" value="https://mdalprato.lan.omniaweb.cloud:443">
-      <label for="artecoServerChannel">Channel Id</label>
-      <input type="text" id="artecoServerChannel" name="arteco_server_channel" placeholder="0">
-      <label for="artecoServerParam">Subject</label>
-      <textarea id="artecoServerParam" name="arteco_server_param" placeholder="Write something ..."
-        style="height:200px"></textarea>
+    
+      <label for="artecoServerParam">JSON</label>
+      <textarea id="artecoServerParam" name="arteco" placeholder="Write something ..."
+        style="height:200px">{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "Courma cortina", "brand":"VCA", "data":"---data--",  "cat": 200  }}</textarea>
+
       <label for="artecoServerImage">Event image</label>
       <input type="file" name="arteco_server_image" id="artecoServerImage">
       <input type="submit" value="Submit">
@@ -31,9 +31,6 @@
     function sendData() {
 
       const artecoServerIP = document.getElementById("artecoServerIP").value;
-      const artecoServerChannel = document.getElementById("artecoServerChannel").value;
-      const artecoServerParam = document.getElementById("artecoServerParam").value;
-      const artecoServerImage = document.getElementById("artecoServerImage").value;
 
       const url = artecoServerIP + "/api/v2/event";
 
