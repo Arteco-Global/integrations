@@ -361,8 +361,34 @@
         Example code in order to send event to Arteco Server:
       </p>
 
-      <pre><code class="javascript">
-              todo
+      <pre><code class=" javascript">
+              function sendData() {
+
+              const artecoServerIP = document.getElementById("server_live_event_form_artecoServerIP").value;
+
+              const url = artecoServerIP + "/api/v2/event";
+
+              const XHR = new XMLHttpRequest();
+
+              // Bind the FormData object and the form element
+              const FD = new FormData(form);
+
+              // Define what happens on successful data submission
+              XHR.addEventListener("load", (event) => {
+              alert(event.target.responseText);
+              });
+
+              // Define what happens in case of error
+              XHR.addEventListener("error", (event) => {
+              alert('Oops! Something went wrong.');
+              });
+
+              // Set up our request
+              XHR.open("POST", url);
+
+              // The data sent is what the user provided in the form
+              XHR.send(FD);
+              }
               </code></pre>
 
               <p>
@@ -386,14 +412,14 @@
 
                 <div class="form-group">
                   <label for="artecoServerParam">Event data</label>
-                  <input class="form-control" type="text" id="server_live_event_form_artecoServerParam"
-                    name="arteco"
+                  <input class="form-control" type="text" id="server_live_event_form_artecoServerParam" name="arteco"
                     value='  {"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "param", "brand":"VCA", "data":"data","cat": 200  }}'>
                 </div>
 
                 <div class="form-group">
                   <label for="artecoServerImage">Event image</label>
-                  <input class="form-control" type="file" name="arteco_server_image" id="server_live_event_form_artecoServerImage">
+                  <input class="form-control" type="file" name="arteco_server_image"
+                    id="server_live_event_form_artecoServerImage">
                 </div>
                 <button type="submit" class="btn btn-primary">Send event</button>
               </form>
