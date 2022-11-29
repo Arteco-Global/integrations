@@ -7,7 +7,7 @@
 
 ## Usage example
 
-This repository is the key repo for all arteco past, current and future integration.
+This repository is the key repo for all the Arteco past, current and future integrations.
 
 * [Arteco integration examples](/documentation/index.html) 
 * [Security Connector](/SecurityConnector/secuirtyEvent.js) 
