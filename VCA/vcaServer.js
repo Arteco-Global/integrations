@@ -3,7 +3,7 @@ var fs = require('fs');
 var multiparty = require('multiparty');
 var https = require('https');
 
-const artecoServerAPIurl = 'https://artecoServerIp.lan.omniaweb.cloud:443/api/v2/event';
+const artecoServerAPIurl = 'https://demo1.my.omniaweb.cloud:443/api/v2/event';
 const serverPort = 5000;
 {}
 /*
