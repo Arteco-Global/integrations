@@ -166,10 +166,12 @@
             <h2>Omnia Web API Integration</h2>
             <p class="lead">This is the API integration document for the Arteco Video Analytics system.</p>
             <p>
-              REST API list can be found here: <a href="https://arteco-global.github.io/Mobile-API-Docs/">API REST List</a>
+              REST API list can be found here: <a href="https://arteco-global.github.io/Mobile-API-Docs/">API REST
+                List</a>
             </p>
             <hr>
-            <p class="alert alert-info">If you have any questions that are beyond the scope of this help document, please
+            <p class="alert alert-info">If you have any questions that are beyond the scope of this help document,
+              please
               feel free contact us via <a target="_blank" href="mailto:support@arteco-global.com">Email</a>.
             </p>
           </section>
@@ -235,8 +237,7 @@
               <div class="form-group">
                 <label for="artecoServerIP">Server IP</label>
                 <input class="form-control" type="text" id="artecoServerIP" name="arteco_server_ip"
-                  placeholder="https://demo1.my.omniaweb.cloud:443"
-                  value="https://demo1.my.omniaweb.cloud:443">
+                  placeholder="https://demo1.my.omniaweb.cloud:443" value="https://demo1.my.omniaweb.cloud:443">
               </div>
 
               <div class="form-group">
@@ -251,7 +252,16 @@
                   value="">
               </div>
 
+
+
               <button type="submit" class="btn btn-primary">Login</button>
+
+              <br> <br>
+              <div class="form-group">
+                <label for="bearerToken">Token</label>
+                <input class="form-control" type="text" id="bearerToken" name="arteco_server_token" placeholder="token"
+                  value="">
+              </div>
             </form>
 
           </section>
@@ -326,42 +336,46 @@
                 <div class="form-group">
                   <label for="artecoServerIP">Server IP</label>
                   <input class="form-control" type="text" id="server_live_event_artecoServerIP" name="arteco_server_ip"
-                    placeholder="https://demo1.my.omniaweb.cloud:443"
-                    value="https://demo1.my.omniaweb.cloud:443">
+                    placeholder="https://demo1.my.omniaweb.cloud:443" value="https://demo1.my.omniaweb.cloud:443">
                 </div>
 
                 <div class="form-group">
                   <label for="artecoServerParam">Event data</label>
 
                   <input class="form-control" type="text" id="server_live_event_artecoServerParam"
-                    name="arteco_server_ip" value='{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "param", "brand":"VCA", "integrationType":"integrationType", "data":"data", "image": "data:image/jpeg;base64,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",
-     "cat": 200  }}'>
+                    name="arteco_server_ip">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Send event</button>
-              </form>
-
-          </section>
-
-
-          <hr class="divider">
+                <select class="form-control" id="select_list_channels">
+                  <option>Choose a channel</option>
+                </select>
+        </div>
 
 
-          <!-- server_live_event
+        <button type="submit" class="btn btn-primary">Send event</button>
+        </form>
+
+        </section>
+
+
+        <hr class="divider">
+
+
+        <!-- server_live_event
 		============================ -->
-          <section id="server_live_event_form">
-            <h2>Send live event (multipart/form-data)</h2>
-            <p class="lead">Arteco Omnia REST APIs can send live events to a channel ID.
-              The POST Login API is used to provide all the information to the server in order to create a new event.
-              This API must be sent as a "Content-type:multipart/form-data"
-            </p>
+        <section id="server_live_event_form">
+          <h2>Send live event (multipart/form-data)</h2>
+          <p class="lead">Arteco Omnia REST APIs can send live events to a channel ID.
+            The POST Login API is used to provide all the information to the server in order to create a new event.
+            This API must be sent as a "Content-type:multipart/form-data"
+          </p>
 
-            <p>
-              Picture of a live event:
-            </p>
+          <p>
+            Picture of a live event:
+          </p>
 
-            <picture>
-              <img src="./assets/images/live_event_example.png" class="img-fluid p-3" style="max-width: 500px;"">
+          <picture>
+            <img src="./assets/images/live_event_example.png" class="img-fluid p-3" style="max-width: 500px;"">
       </picture>
 
       <p>
@@ -369,74 +383,74 @@
       </p>
 
       <pre><code class=" javascript">
-              function sendData() {
+            function sendData() {
 
-              const artecoServerIP = document.getElementById("server_live_event_form_artecoServerIP").value;
+            const artecoServerIP = document.getElementById("server_live_event_form_artecoServerIP").value;
 
-              const url = artecoServerIP + "/api/v2/event";
+            const url = artecoServerIP + "/api/v2/event";
 
-              const XHR = new XMLHttpRequest();
+            const XHR = new XMLHttpRequest();
 
-              // Bind the FormData object and the form element
-              const FD = new FormData(form);
+            // Bind the FormData object and the form element
+            const FD = new FormData(form);
 
-              // Define what happens on successful data submission
-              XHR.addEventListener("load", (event) => {
-              alert(event.target.responseText);
-              });
+            // Define what happens on successful data submission
+            XHR.addEventListener("load", (event) => {
+            alert(event.target.responseText);
+            });
 
-              // Define what happens in case of error
-              XHR.addEventListener("error", (event) => {
-              alert('Oops! Something went wrong.');
-              });
+            // Define what happens in case of error
+            XHR.addEventListener("error", (event) => {
+            alert('Oops! Something went wrong.');
+            });
 
-              // Set up our request
-              XHR.open("POST", url);
+            // Set up our request
+            XHR.open("POST", url);
 
-              // The data sent is what the user provided in the form
-              XHR.send(FD);
-              }
-              </code></pre>
+            // The data sent is what the user provided in the form
+            XHR.send(FD);
+            }
+            </code></pre>
 
-              <p>
-                Json example of the code needed in order to send a live event to Arteco
-              </p>
+            <p>
+              Json example of the code needed in order to send a live event to Arteco
+            </p>
 
-              <pre><code class="json"> 
+            <pre><code class="json"> 
         {"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "param", "brand":"VCA", "integrationType":"integrationType", "data":"data", "image": "base64image","cat": 200  }}
        </code></pre>
 
-              <h3>Try it yourself</h3>
+            <h3>Try it yourself</h3>
 
 
-              <form id="json_send_artecoForm_multipart">
-                <div class="form-group">
-                  <label for="artecoServerIP">Server IP</label>
-                  <input class="form-control" type="text" id="server_live_event_form_artecoServerIP"
-                    name="arteco_server_ip" placeholder="https://demo1.my.omniaweb.cloud:443"
-                    value="https://demo1.my.omniaweb.cloud:443">
-                </div>
+            <form id="json_send_artecoForm_multipart">
+              <div class="form-group">
+                <label for="artecoServerIP">Server IP</label>
+                <input class="form-control" type="text" id="server_live_event_form_artecoServerIP"
+                  name="arteco_server_ip" placeholder="https://demo1.my.omniaweb.cloud:443"
+                  value="https://demo1.my.omniaweb.cloud:443">
+              </div>
 
-                <div class="form-group">
-                  <label for="artecoServerParam">Event data</label>
-                  <input class="form-control" type="text" id="server_live_event_form_artecoServerParam" name="arteco"
-                    value='  {"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "param", "brand":"VCA", "integrationType":"integrationType", "data":"data","cat": 200  }}'>
-                </div>
+              <div class="form-group">
+                <label for="artecoServerParam">Event data</label>
+                <input class="form-control" type="text" id="server_live_event_form_artecoServerParam" name="arteco"
+                  value='  {"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": 0,  "param": "param", "brand":"VCA", "integrationType":"integrationType", "data":"data","cat": 200  }}'>
+              </div>
 
-                <div class="form-group">
-                  <label for="artecoServerImage">Event image</label>
-                  <input class="form-control" type="file" name="arteco_server_image"
-                    id="server_live_event_form_artecoServerImage">
-                </div>
-                <button type="submit" class="btn btn-primary">Send event</button>
-              </form>
+              <div class="form-group">
+                <label for="artecoServerImage">Event image</label>
+                <input class="form-control" type="file" name="arteco_server_image"
+                  id="server_live_event_form_artecoServerImage">
+              </div>
+              <button type="submit" class="btn btn-primary">Send event</button>
+            </form>
 
-          </section>
+        </section>
 
 
-          <hr class="divider">
+        <hr class="divider">
 
-          <!-- 
+        <!-- 
           <section id="idocs_source_credits">
             <h2>Source & Credits</h2>
             <h4>Images:</h4>
@@ -463,49 +477,50 @@
           <hr class="divider">
         -->
 
-          <!-- Support
+        <!-- Support
 		============================ -->
-          <section id="idocs_support">
-            <h2>Support</h2>
-            <p>If this documentation doesn't answer your questions, please contact us via <a
-                class="btn btn-primary" target="_blank" href="mailto:support@arteco-global.com">Support email</a></p>
-            <p> We are located in the GMT +1:00 time zone and we answer all questions within 12-24 hours in weekdays. In
-              some rare cases the waiting time can last upto 48 hours (except for the holiday seasons which might take longer).</p>
-            <div class="alert alert-warning mb-4"><span class="badge badge-danger text-uppercase">Note:</span> While we
-              aim to provide the best support possible, please keep in mind that it only extends to verified buyers and
-              only to issues related to our template like bugs and errors. Custom modifications or third party module
-              implementations are not included.</div>
+        <section id="idocs_support">
+          <h2>Support</h2>
+          <p>If this documentation doesn't answer your questions, please contact us via <a class="btn btn-primary"
+              target="_blank" href="mailto:support@arteco-global.com">Support email</a></p>
+          <p> We are located in the GMT +1:00 time zone and we answer all questions within 12-24 hours in weekdays. In
+            some rare cases the waiting time can last upto 48 hours (except for the holiday seasons which might take
+            longer).</p>
+          <div class="alert alert-warning mb-4"><span class="badge badge-danger text-uppercase">Note:</span> While we
+            aim to provide the best support possible, please keep in mind that it only extends to verified buyers and
+            only to issues related to our template like bugs and errors. Custom modifications or third party module
+            implementations are not included.</div>
 
-          </section>
+        </section>
 
-          <hr class="divider">
+        <hr class="divider">
 
 
-        </div>
       </div>
-
     </div>
-    <!-- Content end -->
 
-    <!-- Footer
+  </div>
+  <!-- Content end -->
+
+  <!-- Footer
   ============================ -->
-    <footer id="footer" class="section bg-dark footer-text-light">
-      <div class="container">
-        <ul class="social-icons social-icons-lg social-icons-muted justify-content-center mb-3">
-          <!-- <li><a data-toggle="tooltip" href="https://twitter.com/harnishdesign/" target="_blank" title=""
+  <footer id="footer" class="section bg-dark footer-text-light">
+    <div class="container">
+      <ul class="social-icons social-icons-lg social-icons-muted justify-content-center mb-3">
+        <!-- <li><a data-toggle="tooltip" href="https://twitter.com/harnishdesign/" target="_blank" title=""
               data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li> -->
-          <li><a data-toggle="tooltip" href="https://www.facebook.com/artecoglobal/" target="_blank" title=""
-              data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-          <!-- <li><a data-toggle="tooltip" href="http://www.dribbble.com/harnishdesign/" target="_blank" title=""
+        <li><a data-toggle="tooltip" href="https://www.facebook.com/artecoglobal/" target="_blank" title=""
+            data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+        <!-- <li><a data-toggle="tooltip" href="http://www.dribbble.com/harnishdesign/" target="_blank" title=""
               data-original-title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
           <li><a data-toggle="tooltip" href="http://www.github.com/" target="_blank" title=""
               data-original-title="GitHub"><i class="fab fa-github"></i></a></li> -->
-        </ul>
-        <p class="text-center">© 2022 ARTECO S.u.r.l. All rights reserved P.IVA 00594980393</p>
+      </ul>
+      <p class="text-center">© 2022 ARTECO S.u.r.l. All rights reserved P.IVA 00594980393</p>
 
-      </div>
-    </footer>
-    <!-- Footer end -->
+    </div>
+  </footer>
+  <!-- Footer end -->
 
   </div>
   <!-- Document Wrapper end -->
@@ -538,6 +553,10 @@
       const artecoServerIP = document.getElementById("artecoServerIP").value;
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
+      const select = document.getElementById("select_list_channels");
+
+      const bearerToken = document.getElementById("bearerToken");
+
       const url = artecoServerIP + "/api/v2/login";
 
       const XHR = new XMLHttpRequest();
@@ -546,7 +565,28 @@
       XHR.addEventListener("load", (event) => {
         //);
         const response = JSON.parse(event.target.responseText);
-        alert(response.root.access_token);
+        //alert(response.root.access_token);
+        bearerToken.value = response.root.access_token;
+        console.log(response.root.access_token);
+
+        const listOfChannels = Object.values(response.root.server.channels.channel).map(channel => {
+          return {
+            name: channel.descr,
+            id: channel.id,
+          }
+        })
+
+
+        for (var i = 0; i < listOfChannels.length; i++) {
+          var opt = listOfChannels[i];
+          var el = document.createElement("option");
+          el.textContent = opt.name;
+          el.value = opt.id;
+          select.appendChild(el);
+        }
+
+        console.log(listOfChannels)
+
       });
 
       // Define what happens in case of error
@@ -586,8 +626,22 @@
   window.addEventListener("load", () => {
     function sendData() {
 
+      const select = document.getElementById("select_list_channels");
+
+
+      const data = '{"lane": "manageEvent", "data": { "ctx": "liveEvent", "chId": ' + select.value +  ',  "param": "param", "brand":"VCA", "integrationType":"integrationType", "data":"data", "image": "data:image/jpeg;base64,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", "cat": 200  }}'
+
       const artecoServerIP = document.getElementById("server_live_event_artecoServerIP").value;
-      const artecoServerParam = document.getElementById("server_live_event_artecoServerParam").value;
+      const artecoServerParam = document.getElementById("server_live_event_artecoServerParam");
+      const bearerToken = document.getElementById("bearerToken").value;
+
+      artecoServerParam.value = data;
+
+      if (bearerToken == undefined || bearerToken == "") {
+        alert("Login first !");
+        return
+      }
+
       const url = artecoServerIP + "/api/v2/event";
       const XHR = new XMLHttpRequest();
 
@@ -606,9 +660,10 @@
 
       //Send the proper header information along with the request
       XHR.setRequestHeader("Content-Type", "application/json");
+      XHR.setRequestHeader('Authorization', 'Bearer ' + bearerToken);
 
       // The data sent is what the user provided in the form
-      XHR.send(artecoServerParam);
+      XHR.send(data);
     }
 
     // Get the form element
