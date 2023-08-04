@@ -1,48 +1,48 @@
 <html>
 
 <head>
-    <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+  <title>Hls.js demo - basic usage</title>
 </head>
 
 <body>
-    <video id="my-video" class="video-js vjs-big-play-centered vjs-theme-sea" >
-    </video>
+  <script src="dist/hls.js"></script>
 
-    <script src="https://vjs.zencdn.net/7.4.1/video.js"></script>
+  <center>
+    <h1>Hls.js demo - basic usage</h1>
+    <video height="600" id="video" controls></video>
+  </center>
 
-    <script>
+  <script>
+    var video = document.getElementById('video');
 
-        // var headers = videojs.Hls.xhr.headers || {}
-        // headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSQxODZqZHdwUTFQVnMycUlscWo2QjRnJFJiTFd3Z0djNzllSkpvSDZNWmlCcW45SUlzWlNZSjM0N041Z203S1d3dHMiLCJpYXQiOjE2OTEwNjkwMTgsImV4cCI6MTY5MTA4MzQxOH0.ZajNPT9gyP6iDbJrR5C30Vlup6nToLVW8Y-e-PbKctw'
-        // videojs.Hls.xhr.headers = headers
-        var player = videojs('my-video');
-  
-        
-        videojs.xhr({
-            url: "http://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8",
-            type: 'application/vnd.apple.mpegurl',
-            headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSQxODZqZHdwUTFQVnMycUlscWo2QjRnJFJiTFd3Z0djNzllSkpvSDZNWmlCcW45SUlzWlNZSjM0N041Z203S1d3dHMiLCJpYXQiOjE2OTEwNjkwMTgsImV4cCI6MTY5MTA4MzQxOH0.ZajNPT9gyP6iDbJrR5C30Vlup6nToLVW8Y-e-PbKctw',
-               // 'Content/Type': "application/vnd.apple.mpegurl"
-            }
-        }, (err, response, body) => {
-            if (err) throw err;
-            if (response.statusCode === 200) {
-                console.log(response)
-                player.src(body)
-            } else {
-                console.log("Error 2")
+ 
 
-                console.error(response)
-            }
-        })
 
-        // player.src({
-        //     src: 'https://arteco1020.lan.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5',
-        //     type: 'application/x-mpegURL'
-        // });
-    </script>
-
+    if (Hls.isSupported()) {
+      var hls = new Hls({
+        debug: true,
+        xhrSetup: xhr => {
+        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSRZck5EOGljTWVYb0hQeEtzWGJ2dFdRJEVSQ2d1aUx0K2prcGV5RHUwaVIvU3BlWHo0YWFPV2VlU1cyMExLbDQ5K1UiLCJpYXQiOjE2OTExNDQ3MjEsImV4cCI6MTY5MTE1OTEyMX0.dBDF24hxvZCb1LU6nxWxVrWXd3pnUD-ovQ2E_LRnIZs')
+      }
+      });
+      
+      hls.loadSource('https://arteco1020.my.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5');
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+        video.muted = true;
+        video.play();
+      });
+    }
+    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.
+    // This is using the built-in support of the plain video element, without using hls.js.
+    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = 'https://arteco1020.my.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5';
+      video.addEventListener('canplay', function () {
+        video.play();
+      });
+    }
+  </script>
 </body>
 
 </html>

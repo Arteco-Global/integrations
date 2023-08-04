@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+</head>
+
+<body>
+    <video id="my-video" class="video-js vjs-big-play-centered vjs-theme-sea" >
+    </video>
+
+    <script src="https://vjs.zencdn.net/7.4.1/video.js"></script>
+
+    <script>
+
+        // var headers = videojs.Hls.xhr.headers || {}
+        // headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSQxODZqZHdwUTFQVnMycUlscWo2QjRnJFJiTFd3Z0djNzllSkpvSDZNWmlCcW45SUlzWlNZSjM0N041Z203S1d3dHMiLCJpYXQiOjE2OTEwNjkwMTgsImV4cCI6MTY5MTA4MzQxOH0.ZajNPT9gyP6iDbJrR5C30Vlup6nToLVW8Y-e-PbKctw'
+        // videojs.Hls.xhr.headers = headers
+        var player = videojs('my-video');
+  
+        
+        videojs.xhr({
+            url: "https://arteco1020.my.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5",
+            type: 'application/vnd.apple.mpegurl',
+            headers: {
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSRHMUVYaFpXR3dmOTNXTnNmbjdRR3VRJERTbngyYnRBNmt2SzJsenpNL2dHR01hYXpkd1BaSWxMemN3MTA5ODJPNk0iLCJpYXQiOjE2OTExMzk5MzksImV4cCI6MTY5MTE1NDMzOX0._TgE6aMF-HOw3WYLKIC5H6xVS9298LgKiBq2zWgGkMg',
+               // 'Content/Type': "application/vnd.apple.mpegurl"
+            }
+        }, (err, response, body) => {
+            if (err) throw err;
+            if (response.statusCode === 200) {
+                console.log(response)
+                player.src(body)
+            } else {
+                console.log("Error 2")
+
+                console.error(response)
+            }
+        })
+
+        // player.src({
+        //     src: 'https://arteco1020.lan.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5',
+        //     type: 'application/x-mpegURL'
+        // });
+    </script>
+
+</body>
+
+</html>
