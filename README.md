@@ -10,8 +10,6 @@
 This repository is the key repo for all the Arteco past, current and future integrations.
 
 * [Arteco integration examples](/documentation/index.html) 
-* [Security Connector](/SecurityConnector/secuirtyEvent.js) 
-* [VCA](/VCA/vcaServer.js) 
 ## Release History
 
 * 1.0.0
