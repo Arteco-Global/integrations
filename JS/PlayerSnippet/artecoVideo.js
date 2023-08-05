@@ -1,24 +1,42 @@
-
-document.addEventListener('DOMContentLoaded', function () {
-    const videoUrl = 'https://arteco1020.lan.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5';
-    const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSRhT0o4MXRWOTBoeWNmcG5RcXRTR1RBJDRJQUdReHdDVjR3azNScFhXS0lzbFZLVVYrYjhPMU56dWw5bUlxakRzRE0iLCJpYXQiOjE2OTEwNjc1MDIsImV4cCI6MTY5MTA4MTkwMn0.Vsl19ghE2ly3G06HDmj2FwdA-QWsx7a2o9EyrM1KzQc'; 
+function playArtecoVideo() {
 
 
-    const player = videojs('my-video', {
-        // Opzioni video.js, se necessario
-    });
+    const loginToken = document.getElementById("token_label").innerHTML;
+    const serverMediaSecret = document.getElementById("mediaSecret_label").innerHTML;
+    const artecoServerIP = document.getElementById("server_host").value;
+    const channelId = document.getElementById("server_list_channel").value;
 
-    fetch(videoUrl, {
-        headers: {
-            Authorization: `Bearer ${authToken}` // Utilizza l'autenticazione via header
-        }
-    })
-        .then(videoBlob => {
-            const videoUrlObject = URL.createObjectURL(videoBlob);
-            player.src({ src: videoUrlObject, type: 'application/x-mpegURL' });
-        })
-        .catch(error => {
-            console.error('Errore nel caricamento del video:', error);
+
+    if (channelId == undefined || loginToken == undefined || serverMediaSecret == undefined || artecoServerIP == undefined) {
+        console.log("Data validation failed")
+        return
+    }
+
+    const formattedId =  channelId.padStart(2, '0');
+
+    // Get the video tag
+    var video = document.getElementById('arteco-player');
+
+    if (Hls.isSupported()) {
+        // check if HLS is supported
+        var hls = new Hls({
+            debug: true,
+            xhrSetup: xhr => {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + loginToken)
+            }
         });
-});
 
+        hls.loadSource(`${artecoServerIP}/hls/${formattedId}/Live/stream.m3u8?MediaSecret=${serverMediaSecret}`);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+            video.muted = true;
+            video.play();
+        });
+    }
+    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.
+    // This is using the built-in support of the plain video element, without using hls.js.
+    else {
+        console.log('HLS not supported')
+    }
+}

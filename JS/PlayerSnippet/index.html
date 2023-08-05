@@ -7,39 +7,42 @@
 <body>
   <script src="dist/hls.js"></script>
 
+  <div class="container">
+    <form id="artecoForm">
+
+      <label for="artecoServerIP">Server IP</label>
+      <input type="text" id="server_host" name="arteco_server_ip" placeholder="https://demo1.my.omniaweb.cloud:443"
+        value="https://demo1.my.omniaweb.cloud:443">
+
+      <label for="server_username">Username</label>
+      <input type="text" id="server_username" name="arteco_server_ip" placeholder="username" value="">
+
+      <label for="server_password">Password</label>
+      <input type="password" id="server_password" name="arteco_server_ip" placeholder="password" value="">
+
+      <p>Token: </p> <label id="token_label"></label>
+      <p>MediaSecret: </p><label id="mediaSecret_label"></label>
+      <input type="button" value="Login" onclick="loginToArtecoServer()">
+    </form>
+  </div>
+
+  <div style="display: none;" id="channels_block">
+    <p>Choose a channel:</p>
+    <select class="form-control" id="server_list_channel">
+    </select>
+    <br>
+    <input type="button" value="Play Video" onclick="playArtecoVideo()">
+
+  </div>
+
   <center>
     <h1>Arteco HLS video Integration example</h1>
-    <video height="600" id="video" controls></video>
-  </center>
+    <video height="600" id="arteco-player" controls></video>
+  </center> 
 
-  <script>
-    var video = document.getElementById('video');
+  <script src="artecoVideo.js"></script>
+  <script src="artecoLogin.js"></script>
 
-    if (Hls.isSupported()) {
-      var hls = new Hls({
-        debug: true,
-        xhrSetup: xhr => {
-        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbHBpIiwicGFzc3dvcmQiOiIkYXJnb24yaWQkdj0xOSRtPTQwOTYsdD0zLHA9MSRZck5EOGljTWVYb0hQeEtzWGJ2dFdRJEVSQ2d1aUx0K2prcGV5RHUwaVIvU3BlWHo0YWFPV2VlU1cyMExLbDQ5K1UiLCJpYXQiOjE2OTExNDQ3MjEsImV4cCI6MTY5MTE1OTEyMX0.dBDF24hxvZCb1LU6nxWxVrWXd3pnUD-ovQ2E_LRnIZs')
-      }
-      });
-      
-      hls.loadSource('https://arteco1020.my.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5');
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-        video.muted = true;
-        video.play();
-      });
-    }
-    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.
-    // This is using the built-in support of the plain video element, without using hls.js.
-    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = 'https://arteco1020.my.omniaweb.cloud:496/hls/02/Live/stream.m3u8?MediaSecret=9267679cf30ee2e8d3ec67c95366eac5';
-      video.addEventListener('canplay', function () {
-        video.play();
-      });
-    }
-  </script>
 </body>
 
 </html>
